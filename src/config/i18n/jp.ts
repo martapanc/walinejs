@@ -1,15 +1,17 @@
-export default {
-  placeholder: 'コメントへようこそ',
+import type { Locale } from './typings';
+
+const jpLocale: Locale = {
   nick: 'ニックネーム',
+  nickError: '3バイト以上のニックネームをご入力ください.',
   mail: 'メールアドレス',
+  mailError: 'メールアドレスをご確認ください.',
   link: 'サイト(http://)',
-  nickFail: '3バイト以上のニックネームをご入力ください.',
-  mailFail: 'メールアドレスをご確認ください.',
+  placeholder: 'ここにコメント',
   sofa: 'コメントしましょう~',
   submit: '提出する',
   reply: '返信する',
   cancelReply: 'キャンセル',
-  comments: 'コメント',
+  comment: 'コメント',
   cancel: 'キャンセル',
   confirm: '確認する',
   continue: '继续',
@@ -39,3 +41,5 @@ export default {
   'code-403':
     'アクセスがAPIなどに制限されました、ドメイン名のセキュリティ設定を確認ください',
 };
+
+export default jpLocale;

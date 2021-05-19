@@ -1,15 +1,17 @@
-export default {
-  placeholder: '撰写评论...',
+import type { Locale } from './typings';
+
+const zhCNLocale: Locale = {
   nick: '昵称',
+  nickError: '昵称不能少于3个字符',
   mail: '邮箱',
+  mailError: '请填写正确的邮件地址',
   link: '网址',
-  nickFail: '昵称不能少于3个字符',
-  mailFail: '请填写正确的邮件地址',
+  placeholder: '欢迎评论',
   sofa: '来发评论吧~',
   submit: '提交',
   reply: '回复',
   cancelReply: '取消回复',
-  comments: '评论',
+  comment: '评论',
   cancel: '取消',
   confirm: '确认',
   continue: '继续',
@@ -37,3 +39,5 @@ export default {
   'code-401': '未经授权的操作，请检查你的AppId和AppKey.',
   'code-403': '访问被API域名白名单拒绝，请检查你的安全域名设置.',
 };
+
+export default zhCNLocale;

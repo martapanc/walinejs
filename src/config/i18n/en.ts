@@ -1,15 +1,17 @@
-export default {
-  placeholder: 'Welcome to comment',
+import type { Locale } from './typings';
+
+const enLocale: Locale = {
   nick: 'NickName',
+  nickError: 'NickName cannot be less than 3 bytes.',
   mail: 'E-Mail',
+  mailError: 'Please confirm your email address.',
   link: 'Website',
-  nickFail: 'NickName cannot be less than 3 bytes.',
-  mailFail: 'Please confirm your email address.',
+  placeholder: 'Comment here...',
   sofa: 'No comment yet.',
   submit: 'Submit',
   reply: 'Reply',
   cancelReply: 'Cancel reply',
-  comments: 'Comments',
+  comment: 'Comments',
   cancel: 'Cancel',
   confirm: 'Confirm',
   continue: 'Continue',
@@ -43,3 +45,5 @@ export default {
   'code-403':
     'Access denied by API domain white list, Please check your security domain.',
 };
+
+export default enLocale;

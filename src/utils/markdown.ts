@@ -1,15 +1,17 @@
 import hanabi from 'hanabi';
 import marked from 'marked';
 
+import type { Config, EmojiMaps } from '../config';
+
 const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
 const blockMathRegExp = /(^|\n\n)\$\$\n(.+?)\n\$\$(\n\n|$)/g;
 
-export const parseEmoji = (text, emojiMaps, emojiCDN) => {
-  if (!text) {
-    return '';
-  }
-
-  return text.replace(/:(.+?):/g, (placeholder, key) => {
+export const parseEmoji = (
+  text = '',
+  emojiMaps: EmojiMaps = {},
+  emojiCDN = ''
+): string =>
+  text.replace(/:(.+?):/g, (placeholder, key: string) => {
     if (!emojiMaps[key]) {
       return placeholder;
     }
@@ -20,9 +22,8 @@ export const parseEmoji = (text, emojiMaps, emojiCDN) => {
         : emojiCDN + emojiMaps[key]
     }" alt="${key}">`;
   });
-};
 
-export const parseMath = (content) =>
+export const parseMath = (content: string): string =>
   content
     .replace(
       inlineMathRegExp,
@@ -32,14 +33,17 @@ export const parseMath = (content) =>
       blockMathRegExp,
       '<p class="vtex">Tex is not available in preview</p>'
     );
-export const getMarkdownParser = (highlight, ctx) => {
+
+export const parseMarkdown = (
+  content: string,
+  { highlight = true, emojiCDN, emojiMaps }: Config
+): string => {
   marked.setOptions({
-    highlight: highlight === false ? null : hanabi,
+    highlight: highlight ? hanabi : undefined,
     breaks: true,
     smartLists: true,
     smartypants: true,
   });
 
-  return (comment) =>
-    parseMath(marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN)));
+  return parseMath(marked(parseEmoji(content, emojiMaps, emojiCDN)));
 };

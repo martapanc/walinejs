@@ -1,15 +1,17 @@
-export default {
-  placeholder: '撰寫評論...',
+import type { Locale } from './typings';
+
+const zhTWLocale: Locale = {
   nick: '暱稱',
   mail: '郵箱',
   link: '網址',
-  nickFail: '暱稱不能少於3個字元',
-  mailFail: '請填寫正確的郵件地址',
+  nickError: '暱稱不能少於3個字元',
+  mailError: '請填寫正確的郵件地址',
+  placeholder: '歡迎評論',
   sofa: '來發評論吧~',
   submit: '提交',
   reply: '回覆',
   cancelReply: '取消回覆',
-  comments: '評論',
+  comment: '評論',
   cancel: '取消',
   confirm: '確認',
   continue: '繼續',
@@ -37,3 +39,5 @@ export default {
   'code-401': '未經授權的操作，請檢查你的AppId和AppKey.',
   'code-403': '訪問被API域名白名單拒絕，請檢查你的安全域名設定.',
 };
+
+export default zhTWLocale;
