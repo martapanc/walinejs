@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@waline/api': workspace:*
-  '@waline/client': workspace:*
-
 importers:
 
   .:
@@ -3175,7 +3171,7 @@ packages:
   '@vuepress/plugin-comment@2.0.0-rc.115':
     resolution: {integrity: sha512-KyknBOWuOcOt0mPqsV71J7r1EgUU84FdcFJf5UJN82VlUre+dfGFqsj9x8k9vRlbPv+E+DxXDb60YfWrwBhNSQ==}
     peerDependencies:
-      '@waline/client': workspace:*
+      '@waline/client': ^3.5.5
       artalk: ^2.9.1
       twikoo: ^1.6.41
       vuepress: 2.0.0-rc.26
