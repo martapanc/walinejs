@@ -1,22 +1,11 @@
+import { format } from 'date-fns';
+import { it } from 'date-fns/locale';
+
+import type { WalineDateLocale } from '../typings';
 import { isString } from './type.js';
-import type { WalineDateLocale } from '../typings/index.js';
-
-const padWithZeros = (vNumber: number, width: number): string => {
-  let numAsString = vNumber.toString();
-
-  while (numAsString.length < width) {
-    numAsString = '0' + numAsString;
-  }
-
-  return numAsString;
-};
 
 export const dateFormat = (date: Date): string => {
-  const vDay = padWithZeros(date.getDate(), 2);
-  const vMonth = padWithZeros(date.getMonth() + 1, 2);
-  const vYear = padWithZeros(date.getFullYear(), 2);
-
-  return `${vYear}-${vMonth}-${vDay}`;
+  return format(date, "MMMM d, yyyy 'alle' h:mm a", { locale: it });
 };
 
 export const getTimeAgo = (
