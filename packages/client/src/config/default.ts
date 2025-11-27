@@ -5,7 +5,7 @@ import type {
   WalineMeta,
   WalineSearchOptions,
   WalineSearchResult,
-} from '../typings/index.js';
+} from '../typings';
 
 const AVAILABLE_META: WalineMeta[] = ['nick', 'mail', 'link'];
 
@@ -69,7 +69,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
         limit: '20',
         rating: 'g',
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
+        api_key: process.env.GIPHY_API_KEY ?? '',
         ...params,
       }).toString()}`,
     )
