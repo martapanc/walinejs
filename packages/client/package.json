@@ -1,6 +1,6 @@
 {
   "name": "@martapanc/waline-client",
-  "version": "4.0.2-ntf",
+  "version": "4.0.3-ntf",
   "description": "client for waline comment system",
   "keywords": [
     "valine",

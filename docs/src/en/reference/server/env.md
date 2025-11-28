@@ -73,16 +73,17 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 
 ## Safety
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| Environment Variables      | Default        | Description                                                                                                                                                                                  |
+| -------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `IPQPS`                    | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                                                                                                   |
+| `SECURE_DOMAINS`           |                | Secure Domains config. Supports multiple domain with Comma separated                                                                                                                         |
+| `AKISMET_KEY`              | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                                                                                             |
+| `COMMENT_AUDIT`            | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended                                                                     |
+| `COMMENT_AUDIT_FIRST_ONLY` | `false`        | First comment audit switcher. When enabled, only the first comment from each email address requires approval, subsequent comments are auto-approved. Mutually exclusive with `COMMENT_AUDIT` |
+| `RECAPTCHA_V3_KEY`         |                | reCAPTCHA V3 key,should set along with client                                                                                                                                                |
+| `RECAPTCHA_V3_SECRET`      |                | reCAPTCHA V3 secret for server.                                                                                                                                                              |
+| `TURNSTILE_KEY`            |                | Turnstile key,should set along with client                                                                                                                                                   |
+| `TURNSTILE_SECRET`         |                | Turnstile secret for server                                                                                                                                                                  |
 
 ::: tip Recaptcha and Turnstile
 
