@@ -113,6 +113,16 @@ const isLogin = computed(() => Boolean(userInfo.value.token));
 
 const canUploadImage = computed(() => config.value.imageUploader !== null);
 
+const acceptRulesHtml = computed(() => {
+  const text = locale.value.acceptRules;
+
+  // Convert markdown links [text](url) to HTML
+  return text.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
+  );
+});
+
 const insert = (content: string): void => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const textArea = textAreaRef.value!;
@@ -713,6 +723,9 @@ onMounted(() => {
               {{ locale.submit }}
             </template>
           </button>
+
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div class="wl-accept-rules" v-html="acceptRulesHtml" />
         </div>
 
         <div ref="gif-popup" class="wl-gif-popup" :class="{ display: showGif }">

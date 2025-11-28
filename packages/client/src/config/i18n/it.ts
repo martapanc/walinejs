@@ -53,4 +53,5 @@ export default generateLocale([
   'Più recenti',
   'Più popolari',
   'Cosa ne pensi?',
+  "Cliccando 'Invia' accetti il [regolamento dei commenti](/privacy-policy#regolamento-commenti).",
 ]);

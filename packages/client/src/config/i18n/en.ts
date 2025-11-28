@@ -50,4 +50,5 @@ export default generateLocale([
   'Latest',
   'Hottest',
   'What do you think?',
+  "By clicking 'Submit' you agree to the [comment guidelines](/privacy-policy#regolamento-commenti).",
 ]);
