@@ -5,7 +5,7 @@ import type { WalineDateLocale } from '../typings';
 import { isString } from './type.js';
 
 export const dateFormat = (date: Date): string => {
-  return format(date, "d MMMM yyyy 'alle' hh:mm", { locale: it });
+  return format(date, "d MMMM yyyy 'alle' HH:mm", { locale: it });
 };
 
 export const getTimeAgo = (

@@ -42,7 +42,10 @@ export const defaultTeXRenderer = (blockMode: boolean): string =>
     ? '<p class="wl-tex">TeX is not available in preview</p>'
     : '<span class="wl-tex">TeX is not available in preview</span>';
 
-export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
+export const getDefaultSearchOptions = (
+  lang: string,
+  apiKey = '',
+): WalineSearchOptions => {
   interface GifResult {
     data: IGif[];
     meta: {
@@ -69,7 +72,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
         limit: '20',
         rating: 'g',
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        api_key: process.env.GIPHY_API_KEY ?? '',
+        api_key: apiKey,
         ...params,
       }).toString()}`,
     )

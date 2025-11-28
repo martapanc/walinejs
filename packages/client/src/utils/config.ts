@@ -38,6 +38,7 @@ export interface WalineConfig
       | 'wordLimit'
       | 'reaction'
       | 'search'
+      | 'giphyApiKey'
     >
   > {
   locale: WalineLocale;
@@ -93,6 +94,7 @@ export const getConfig = ({
   texRenderer,
   search,
   reaction,
+  giphyApiKey,
   ...more
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
@@ -119,5 +121,8 @@ export const getConfig = ({
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),
   emoji: fallback(emoji, DEFAULT_EMOJI),
-  search: fallback(search, getDefaultSearchOptions(lang)),
+  search: fallback(
+    search,
+    giphyApiKey ? getDefaultSearchOptions(lang, giphyApiKey) : null,
+  ),
 });

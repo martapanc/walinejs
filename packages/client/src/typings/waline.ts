@@ -223,7 +223,18 @@ export interface WalineProps {
    *
    * Customize Search feature
    */
-  search?: WalineSearchOptions;
+  search?: WalineSearchOptions | boolean;
+
+  /**
+   * Giphy API 密钥
+   *
+   * 当使用默认的 Giphy 搜索功能时需要提供
+   *
+   * Giphy API key
+   *
+   * Required when using the default Giphy search feature
+   */
+  giphyApiKey?: string;
 
   /**
    * 代码块高亮器
