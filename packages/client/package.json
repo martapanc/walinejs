@@ -1,6 +1,6 @@
 {
-  "name": "@waline/client",
-  "version": "3.8.0",
+  "name": "@martapanc/waline-client",
+  "version": "4.0.1_ntf",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -9,7 +9,7 @@
     "blog"
   ],
   "repository": {
-    "url": "https://github.com/walinejs/waline",
+    "url": "https://github.com/martapanc/waline",
     "directory": "packages/client"
   },
   "license": "MIT",
@@ -103,6 +103,6 @@
     "node": ">=18"
   },
   "publishConfig": {
-    "provenance": true
+    "registry": "https://npm.pkg.github.com"
   }
 }
