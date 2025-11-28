@@ -685,47 +685,53 @@ onMounted(() => {
         </div>
 
         <div class="wl-info">
-          <div class="wl-captcha-container" />
+          <div class="wl-buttons">
+            <div class="wl-captcha-container" />
 
-          <div class="wl-text-number">
-            {{ wordNumber }}
+            <div class="wl-text-number">
+              {{ wordNumber }}
 
-            <span v-if="config.wordLimit">
-              &nbsp;/&nbsp;
-              <span
-                :class="{ illegal: !isWordNumberLegal }"
-                v-text="wordLimit"
-              />
-            </span>
+              <span v-if="config.wordLimit">
+                &nbsp;/&nbsp;
+                <span
+                  :class="{ illegal: !isWordNumberLegal }"
+                  v-text="wordLimit"
+                />
+              </span>
 
-            &nbsp;{{ locale.word }}
+              &nbsp;{{ locale.word }}
+            </div>
+
+            <button
+              v-if="config.login !== 'disable' && !isLogin"
+              type="button"
+              class="wl-btn"
+              @click="onLogin"
+              v-text="locale.login"
+            />
+
+            <button
+              v-if="config.login !== 'force' || isLogin"
+              type="submit"
+              class="primary wl-btn"
+              title="Cmd|Ctrl + Enter"
+              :disabled="isSubmitting"
+              @click="submitComment"
+            >
+              <LoadingIcon v-if="isSubmitting" :size="16" />
+
+              <template v-else>
+                {{ locale.submit }}
+              </template>
+            </button>
           </div>
-
-          <button
-            v-if="config.login !== 'disable' && !isLogin"
-            type="button"
-            class="wl-btn"
-            @click="onLogin"
-            v-text="locale.login"
-          />
-
-          <button
-            v-if="config.login !== 'force' || isLogin"
-            type="submit"
-            class="primary wl-btn"
-            title="Cmd|Ctrl + Enter"
-            :disabled="isSubmitting"
-            @click="submitComment"
-          >
-            <LoadingIcon v-if="isSubmitting" :size="16" />
-
-            <template v-else>
-              {{ locale.submit }}
-            </template>
-          </button>
-
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="wl-accept-rules" v-html="acceptRulesHtml" />
+        </div>
+
+        <div class="wl-accept-rules-sm">
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div v-html="acceptRulesHtml" />
         </div>
 
         <div ref="gif-popup" class="wl-gif-popup" :class="{ display: showGif }">
