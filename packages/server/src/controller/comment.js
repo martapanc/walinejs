@@ -170,7 +170,25 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment post frequency check OK!`);
 
       /** Akismet */
-      data.status = this.config('audit') ? 'waiting' : 'approved';
+      if (this.config('auditFirstOnly')) {
+        // Check if user has previously posted approved comments
+        const previousApproved = await this.modelInstance.select({
+          mail: data.mail,
+          status: 'approved',
+        });
+
+        data.status = think.isEmpty(previousApproved) ? 'waiting' : 'approved';
+
+        think.logger.debug(
+          `Comment auditFirstOnly check: ${
+            think.isEmpty(previousApproved)
+              ? 'first comment, needs approval'
+              : 'trusted user, auto-approved'
+          }`,
+        );
+      } else {
+        data.status = this.config('audit') ? 'waiting' : 'approved';
+      }
 
       think.logger.debug(`Comment initial status is ${data.status}`);
 

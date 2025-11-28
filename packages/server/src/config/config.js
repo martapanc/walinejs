@@ -47,6 +47,7 @@ const {
 
   LEVELS,
   COMMENT_AUDIT,
+  COMMENT_AUDIT_FIRST_ONLY,
 } = process.env;
 
 let storage = 'leancloud';
@@ -125,6 +126,8 @@ module.exports = {
       : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
+  auditFirstOnly:
+    COMMENT_AUDIT_FIRST_ONLY && !isFalse(COMMENT_AUDIT_FIRST_ONLY),
   avatarProxy,
   oauthUrl,
   markdown,
