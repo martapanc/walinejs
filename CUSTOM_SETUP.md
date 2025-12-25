@@ -32,7 +32,7 @@ Client projects can pull this package as a dependency, e.g. as `"@martapanc/wali
 
 ## Server
 
-The server is deployed to Vercel at **<https://comments.notruefeminist.com>**.
+The server is deployed to Vercel (**comments** project).
 
 Any changes pushed to the main branch will trigger a Vercel deployment.
 
