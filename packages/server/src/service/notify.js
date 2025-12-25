@@ -398,6 +398,78 @@ ${SITE_URL + self.url + '#' + self.objectId}`;
     // Since Discord doesn't return any response body on success, we just return the status text.
   }
 
+  async telegramReaction({ path, type, count }) {
+    const { TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL } = process.env;
+
+    if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      return false;
+    }
+
+    const contentTG = `⭐ Nuova reaction su <b>${SITE_NAME}</b>
+
+<b>Pagina:</b> ${path}
+<b>Tipo:</b> ${type}
+<b>Totale:</b> ${count}
+
+${SITE_URL + path}`;
+
+    const resp = await fetch(
+      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: TG_CHAT_ID,
+          text: contentTG,
+          parse_mode: 'HTML',
+        }),
+      },
+    ).then((resp) => resp.json());
+
+    if (!resp.ok) {
+      console.log(
+        'Telegram Reaction Notification Failed:' + JSON.stringify(resp),
+      );
+    }
+  }
+
+  async discordReaction({ path, type, count }) {
+    const { DISCORD_WEBHOOK, SITE_NAME, SITE_URL } = process.env;
+
+    if (!DISCORD_WEBHOOK) {
+      return false;
+    }
+
+    const content = `⭐ **Nuova reaction su ${SITE_NAME}**
+
+**Pagina:** ${path}
+**Tipo:** ${type}
+**Totale:** ${count}
+
+${SITE_URL + path}`;
+
+    return fetch(DISCORD_WEBHOOK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ content }),
+    }).then((resp) => resp.statusText);
+  }
+
+  async runReaction({ path, type, count }) {
+    const { DISABLE_AUTHOR_NOTIFY } = process.env;
+
+    if (DISABLE_AUTHOR_NOTIFY) {
+      return;
+    }
+
+    await this.telegramReaction({ path, type, count });
+    await this.discordReaction({ path, type, count });
+  }
+
   async lark({ title, content }, self, parent) {
     const { LARK_WEBHOOK, LARK_SECRET, SITE_NAME, SITE_URL } = process.env;
 

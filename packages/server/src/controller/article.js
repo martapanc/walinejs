@@ -84,6 +84,13 @@ module.exports = class extends BaseRest {
         { access: { read: true, write: true } },
       );
 
+      // Send notification for new reaction
+      if (type.startsWith('reaction')) {
+        const notify = this.service('notify', this);
+
+        await notify.runReaction({ path, type, count });
+      }
+
       return this.jsonOrSuccess(deprecated ? count : [{ [type]: count }]);
     }
 
@@ -97,6 +104,13 @@ module.exports = class extends BaseRest {
       }),
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] },
     );
+
+    // Send notification for reaction increment (not decrement)
+    if (type.startsWith('reaction') && action !== 'desc') {
+      const notify = this.service('notify', this);
+
+      await notify.runReaction({ path, type, count: ret[0][type] });
+    }
 
     return this.jsonOrSuccess(
       deprecated ? ret[0][type] : [{ [type]: ret[0][type] }],
