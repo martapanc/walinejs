@@ -398,17 +398,15 @@ ${SITE_URL + self.url + '#' + self.objectId}`;
     // Since Discord doesn't return any response body on success, we just return the status text.
   }
 
-  async telegramReaction({ path, type, count }) {
+  async telegramReaction({ path, typeEmoji, count }) {
     const { TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL } = process.env;
 
     if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
     }
 
-    const contentTG = `⭐ Nuova reaction su <b>${SITE_NAME}</b>
+    const contentTG = `${typeEmoji} Nuova reaction su <b>${SITE_NAME}</b>
 
-<b>Pagina:</b> ${path}
-<b>Tipo:</b> ${type}
 <b>Totale:</b> ${count}
 
 ${SITE_URL + path}`;
@@ -435,17 +433,15 @@ ${SITE_URL + path}`;
     }
   }
 
-  async discordReaction({ path, type, count }) {
+  async discordReaction({ path, typeEmoji, count }) {
     const { DISCORD_WEBHOOK, SITE_NAME, SITE_URL } = process.env;
 
     if (!DISCORD_WEBHOOK) {
       return false;
     }
 
-    const content = `⭐ **Nuova reaction su ${SITE_NAME}**
+    const content = `${typeEmoji} **Nuova reaction su ${SITE_NAME}**
 
-**Pagina:** ${path}
-**Tipo:** ${type}
 **Totale:** ${count}
 
 ${SITE_URL + path}`;
@@ -466,8 +462,18 @@ ${SITE_URL + path}`;
       return;
     }
 
-    await this.telegramReaction({ path, type, count });
-    await this.discordReaction({ path, type, count });
+    const typeMap = {
+      reaction0: '❤️',
+      reaction1: '👍️',
+      reaction2: '👎️',
+      reaction3: '🔥',
+      reaction4: '🐈‍⬛',
+    };
+
+    const typeEmoji = typeMap[type] || '⭐️';
+
+    await this.telegramReaction({ path, typeEmoji, count });
+    await this.discordReaction({ path, typeEmoji, count });
   }
 
   async lark({ title, content }, self, parent) {

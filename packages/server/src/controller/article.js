@@ -108,8 +108,13 @@ module.exports = class extends BaseRest {
     // Send notification for reaction increment (not decrement)
     if (type.startsWith('reaction') && action !== 'desc') {
       const notify = this.service('notify', this);
+      // Sum all reaction counts (reaction0 through reaction4)
+      const totalCount = [0, 1, 2, 3, 4].reduce(
+        (sum, i) => sum + (ret[0][`reaction${i}`] || 0),
+        0,
+      );
 
-      await notify.runReaction({ path, type, count: ret[0][type] });
+      await notify.runReaction({ path, type, count: totalCount });
     }
 
     return this.jsonOrSuccess(
