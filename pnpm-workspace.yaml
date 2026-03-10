@@ -1,5 +1,4 @@
 packages:
-  - docs
   - packages/*
 onlyBuiltDependencies:
   - core-js-pure
@@ -8,4 +7,3 @@ onlyBuiltDependencies:
   - unrs-resolver
 overrides:
   '@waline/api': workspace:*
-  '@waline/client': workspace:*
