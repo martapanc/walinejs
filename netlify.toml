@@ -1,6 +1,6 @@
 [build]
   command = "cd packages/server && pnpm install --prod --ignore-scripts --ignore-workspace --no-frozen-lockfile"
-  functions = "netlify/functions"
+  functions = "packages/server/netlify/functions"
   publish = "netlify/static"
 
 [build.environment]
