@@ -1,5 +1,5 @@
 [build]
-  command = "cd packages/server && npm install --omit=dev --ignore-scripts"
+  command = "cd packages/server && pnpm install --prod --ignore-scripts --ignore-workspace --no-frozen-lockfile"
   functions = "packages/server/netlify/functions"
   publish = "netlify/static"
 
