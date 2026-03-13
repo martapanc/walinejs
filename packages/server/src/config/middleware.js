@@ -12,7 +12,7 @@ const isAliyunFC =
 module.exports = [
   {
     handle: 'dashboard',
-    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
+    match: isNetlify ? /^(\/\.netlify\/functions\/[^/]+)?\/ui/i : /^\/ui/,
   },
 
   {
